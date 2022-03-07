@@ -24,7 +24,7 @@
     //     echo 'Falló la conexión: ' . $e->getMessage();
     // }
 
-    $tamano=500;
+    $tamano=600;
     // cuadrado arr iz
     // $bbdd=[1,"ad",50,2,"iz",90,3,"ad",50,4,"iz",90,5,"ad",50,6,"iz",90,7,"ad",50];
     // cuadrado arr d
@@ -33,8 +33,10 @@
     // $bbdd=[1,"at",50,2,"iz",90,3,"at",50,4,"iz",90,5,"at",50,6,"iz",90,7,"at",50];
     // cuadrado aba iz
     // $bbdd=[1,"at",50,2,"de",90,3,"at",50,4,"de",90,5,"at",50,6,"de",90,7,"at",50];
+    // loop
+    $bbdd=[1,"ad",200,2,"de",120,3,"ad",100,4,"de",120,5,"ad",100,6,"iz",120,7,"ad",100,8,"iz",120,9,"ad",100,10,"de",120,1,"ad",200,2,"de",120,3,"ad",100,4,"de",120,5,"ad",100,6,"iz",120,7,"ad",100,8,"iz",120,9,"ad",100,10,"de",120,1,"ad",200,2,"de",120,3,"ad",100,4,"de",120,5,"ad",100,6,"iz",120,7,"ad",100,8,"iz",120,9,"ad",100,10,"de",120];
     //pruebas
-    $bbdd=[1,"ad","50",2,"de","70",3,"at","10",4,"de","20",5,"casa","T",6,"ad",90,7,"de",20,8,"at",40,9,"sl","T",10,"at",50,11,"bl","T",12,"at",50];
+    // $bbdd=[1,"ad","50",2,"de","70",3,"at","10",4,"de","20",5,"casa","T",6,"ad",90,7,"de",20,8,"at",40,9,"sl","T",10,"at",50,11,"bl","T",12,"at",50];
     $array=[];
     for($i=0;$i<count($bbdd);$i+=3){
         $array[]=["id"=>$bbdd[$i],"comando"=>$bbdd[$i+1],"valor"=>$bbdd[$i+2]];
@@ -70,7 +72,8 @@
         }elseif ($array[$conteo]["comando"]=="casa") {
             $centrox=$tamano/2;
             $centroy=$tamano/2;
-        }elseif($array[$conteo]["comando"]=="ad") {
+        }else
+        if($array[$conteo]["comando"]=="ad") {
             if($grado==0){
                 $valor = $array[$conteo]["valor"];
                 $xf=$centrox;
@@ -88,30 +91,77 @@
                 $xf=$centrox-$valor;
                 $yf=$centroy;
             }elseif($grado<90&&$grado>0){
-                $cos = cos(90-$grado)*$array[$conteo]["valor"];
-                $sin = sin(90-$grado)*$array[$conteo]["valor"];
+                $rh=(pi()/180)*(90-($grado));
+                $cos=(cos($rh)*$array[$conteo]["valor"]);
+                $sin=(sin($rh)*$array[$conteo]["valor"]);
                 $xf=$centrox+$cos;
                 $yf=$centroy-$sin;
             }elseif($grado<180&&$grado>90){
-                $cos = cos(180-$grado)*$array[$conteo]["valor"];
-                $sin = sin(180-$grado)*$array[$conteo]["valor"];
-                $xf=$centrox+$cos;
-                $yf=$centroy+$sin;
+                $rh=(pi()/180)*(180-($grado));
+                $cos=(cos($rh)*$array[$conteo]["valor"]);
+                $sin=(sin($rh)*$array[$conteo]["valor"]);
+                $xf=$centrox+$sin;
+                $yf=$centroy+$cos;
             }elseif($grado<270&&$grado>180){
-                $cos = cos(270-$grado)*$array[$conteo]["valor"];
-                $sin = sin(270-$grado)*$array[$conteo]["valor"];
+                $rh=(pi()/180)*(270-($grado));
+                $cos=(cos($rh)*$array[$conteo]["valor"]);
+                $sin=(sin($rh)*$array[$conteo]["valor"]);
                 $xf=$centrox-$cos;
                 $yf=$centroy+$sin;
             }elseif($grado<360&&$grado>270){
-                $cos = cos(360-$grado)*$array[$conteo]["valor"];
-                $sin = sin(360-$grado)*$array[$conteo]["valor"];
-                $xf=$centrox-$cos;
-                $yf=$centroy-$sin;
+                $rh=(pi()/180)*(360-($grado));
+                $cos=(cos($rh)*$array[$conteo]["valor"]);
+                $sin=(sin($rh)*$array[$conteo]["valor"]);
+                $xf=$centrox-$sin;
+                $yf=$centroy-$cos;
             }
             $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='5' />");
             $centrox=$xf;
             $centroy=$yf;
-        }elseif($array[$conteo]["comando"]=="at") {
+        }else
+        // if($array[$conteo]["comando"]=="ad") {
+        //     if($grado==0){
+        //         $valor = $array[$conteo]["valor"];
+        //         $xf=$centrox;
+        //         $yf=$centroy-$valor;
+        //     }elseif($grado==90){
+        //         $valor = $array[$conteo]["valor"];
+        //         $xf=$centrox+$valor;
+        //         $yf=$centroy;
+        //     }elseif($grado==180){
+        //         $valor = $array[$conteo]["valor"];
+        //         $xf=$centrox;
+        //         $yf=$centroy+$valor;
+        //     }elseif($grado==270){
+        //         $valor = $array[$conteo]["valor"];
+        //         $xf=$centrox-$valor;
+        //         $yf=$centroy;
+        //     }elseif($grado<90&&$grado>0){
+        //         $cos = cos(180-$grado)*$array[$conteo]["valor"];
+        //         $sin = sin(180-$grado)*$array[$conteo]["valor"];
+        //         $xf=$centrox+$cos;
+        //         $yf=$centroy-$sin;
+        //     }elseif($grado<180&&$grado>90){
+        //         $cos = cos(180-$grado)*$array[$conteo]["valor"];
+        //         $sin = sin(180-$grado)*$array[$conteo]["valor"];
+        //         $xf=$centrox+$cos;
+        //         $yf=$centroy+$sin;
+        //     }elseif($grado<270&&$grado>180){
+        //         $cos = cos(270-$grado)*$array[$conteo]["valor"];
+        //         $sin = sin(270-$grado)*$array[$conteo]["valor"];
+        //         $xf=$centrox-$cos;
+        //         $yf=$centroy+$sin;
+        //     }elseif($grado<360&&$grado>270){
+        //         $cos = cos(360-$grado)*$array[$conteo]["valor"];
+        //         $sin = sin(360-$grado)*$array[$conteo]["valor"];
+        //         $xf=$centrox-$cos;
+        //         $yf=$centroy-$sin;
+        //     }
+        //     $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='5' />");
+        //     $centrox=$xf;
+        //     $centroy=$yf;
+        // }else
+        if($array[$conteo]["comando"]=="at") {
             if($grado==0){
                 $sin = $array[$conteo]["valor"];
                 $xf=$centrox;
@@ -154,8 +204,8 @@
             $centroy=$yf;
         }
         $conteo++;
+        print_r($grado);
     }
-    print_r($lineas);
     foreach ($lineas as $value) {
         echo($value);
     }
