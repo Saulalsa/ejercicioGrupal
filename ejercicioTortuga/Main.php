@@ -16,12 +16,18 @@
 <body>
     <h1>Grupo 1.</h1>
     <?php
+
+
+
     $tamano=500;
-    // cuadrado arr iz// $bbdd=[1,"ad",50,2,"iz",90,3,"ad",50,4,"iz",90,5,"ad",50,6,"iz",90,7,"ad",50];
-    // cuadrado arr d// $bbdd=[1,"ad",50,2,"d",90,3,"ad",50,4,"d",90,5,"ad",50,6,"d",90,7,"ad",50];
-    // cuadrado aba d// $bbdd=[1,"at",50,2,"iz",90,3,"at",50,4,"iz",90,5,"at",50,6,"iz",90,7,"at",50];
+    // cuadrado arr iz
+    // $bbdd=[1,"ad",50,2,"iz",90,3,"ad",50,4,"iz",90,5,"ad",50,6,"iz",90,7,"ad",50];
+    // cuadrado arr d
+    // $bbdd=[1,"ad",50,2,"d",90,3,"ad",50,4,"d",90,5,"ad",50,6,"d",90,7,"ad",50];
+    // cuadrado aba d
+    // $bbdd=[1,"at",50,2,"iz",90,3,"at",50,4,"iz",90,5,"at",50,6,"iz",90,7,"at",50];
     // cuadrado aba iz// $bbdd=[1,"at",50,2,"d",90,3,"at",50,4,"d",90,5,"at",50,6,"d",90,7,"at",50];
-    $bbdd=[1,"ad",20,2,"iz",40,3,"ad",40,4,"d",10,5,"at",90,6,"d",20,7,"at",40];
+    // $bbdd=[1,"ad",50,2,"d",70,3,"at",10,4,"d",20,5,"ad",90,6,"d",20,7,"at",40,7,"at",50];
     $array=[];
     for($i=0;$i<count($bbdd);$i+=3){
         $array[]=["id"=>$bbdd[$i],"comando"=>$bbdd[$i+1],"valor"=>$bbdd[$i+2]];
@@ -31,26 +37,27 @@
     $centroy=$tamano/2;
     
     $grado=0;
+    $lineas=[];
     
     echo("<svg width=$tamano height=$tamano>");
 
     $conteo=0;
     for($i=0;$i<count($bbdd);$i+=3){ 
-        if ($array[$conteo]["comando"]=="d") {
+        if ($array[$conteo]["comando"]=="bp") {
+            $lineas=[];
+        }elseif ($array[$conteo]["comando"]=="d") {
             $grado = $grado + $array[$conteo]["valor"];
             if($grado>=360){
                 $grado = $grado - 360;
             }
             echo($grado);
-        }
-        if ($array[$conteo]["comando"]=="iz") {
+        }elseif ($array[$conteo]["comando"]=="iz") {
             $grado = $grado - $array[$conteo]["valor"];
             if($grado<0){
                 $grado = 360 + $grado;
             }
             echo($grado);
-        }
-        if ($array[$conteo]["comando"]=="ad") {
+        }elseif ($array[$conteo]["comando"]=="ad") {
             if($grado==0){
                 $sin = $array[$conteo]["valor"];
                 $xf=$centrox;
@@ -88,12 +95,10 @@
                 $xf=$centrox-$cos;
                 $yf=$centroy-$sin;
             }
-            $linea=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='blue' stroke-width='5' />");
+            $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='blue' stroke-width='5' />");
             $centrox=$xf;
             $centroy=$yf;
-            echo($linea);
-        }
-        if ($array[$conteo]["comando"]=="at") {
+        }elseif ($array[$conteo]["comando"]=="at") {
             if($grado==0){
                 $sin = $array[$conteo]["valor"];
                 $xf=$centrox;
@@ -131,14 +136,17 @@
                 $xf=$centrox-$cos;
                 $yf=$centroy-$sin;
             }
-            $linea=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='black' stroke-width='5' />");
+            $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='black' stroke-width='5' />");
             $centrox=$xf;
             $centroy=$yf;
-            echo($linea);
+            
         }
         $conteo++;
         // echo("$centrox , $centroy , ");
         // echo($grado);
+    }
+    foreach ($lineas as $value) {
+        echo($value);
     }
 
     echo("</svg>");
