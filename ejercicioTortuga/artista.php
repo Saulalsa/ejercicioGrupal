@@ -35,9 +35,9 @@
     // cuadrado aba iz
     // $bbdd=[1,"at",50,2,"de",90,3,"at",50,4,"de",90,5,"at",50,6,"de",90,7,"at",50];
     // loop
-    // $bbdd=[1,"ad",200,2,"de",120,3,"ad",100,4,"de",120,5,"ad",100,6,"iz",120,7,"ad",100,8,"iz",120,9,"ad",100,10,"de",120,1,"ad",200,2,"de",120,3,"ad",100,4,"de",120,5,"ad",100,6,"iz",120,7,"ad",100,8,"iz",120,9,"ad",100,10,"de",120,1,"ad",200,2,"de",120,3,"ad",100,4,"de",120,5,"ad",100,6,"iz",120,7,"ad",100,8,"iz",120,9,"ad",100,10,"de",120];
+    $bbdd=[1,"ad",200,2,"de",120,3,"ad",100,4,"de",120,5,"ad",100,6,"iz",120,7,"ad",100,8,"iz",120,9,"ad",100,10,"de",120,1,"ad",200,2,"de",120,3,"ad",100,4,"de",120,5,"ad",100,6,"iz",120,7,"ad",100,8,"iz",120,9,"ad",100,10,"de",120,1,"ad",200,2,"de",120,3,"ad",100,4,"de",120,5,"ad",100,6,"iz",120,7,"ad",100,8,"iz",120,9,"ad",100,10,"de",120];
     //pruebas
-    $bbdd=[1,"ad",40,2,"iz",35,3,"at",80,4,"de",32,5,"ad",50,6,"de",70];
+    // $bbdd=[1,"ad",40,2,"iz",35,3,"at",80,4,"de",32,5,"ad",50,6,"de",70];
     $array=[];
     for($i=0;$i<count($bbdd);$i+=3){
         $array[]=["id"=>$bbdd[$i],"comando"=>$bbdd[$i+1],"valor"=>$bbdd[$i+2]];
@@ -50,6 +50,7 @@
     $lineas=[];
     $color="#000000";
     $conteo=0;
+    $pintar=True;
     
     echo("<svg width=$tamano height=$tamano>");
     
@@ -73,6 +74,10 @@
         }elseif ($array[$conteo]["comando"]=="casa") {
             $centrox=$tamano/2;
             $centroy=$tamano/2;
+        }elseif($array[$conteo]["comando"]=="ot"){
+            $pintar=False;
+        }elseif($array[$conteo]["comando"]=="mt"){
+            $pintar=True;
         }elseif($array[$conteo]["comando"]=="ad") {
             if($grado==0){
                 $valor = $array[$conteo]["valor"];
@@ -169,11 +174,14 @@
     //creacion de tortuga
     $lineas=[];
     $conteo=0;
-    $arrayT=[1,"de",90,2,"ad",15,3,"iz",90,4,"ad",5,4,"iz",90,6,"ad",10,7,"de",90,8,"ad",10,9,"de",90,10,"ad",10,11,"iz",90,12,"ad",5,13,"iz",90,14,"ad",10,15,"de",90,16,"ad",10,17,"iz",90,18,"ad",10,19,"iz",90,20,"ad",10,21,"de",90,22,"ad",10,23,"iz",90,24,"ad",5,25,"iz",90,26,"ad",10,27,"de",90,28,"ad",10,29,"de",90,30,"ad",10,31,"iz",90,32,"ad",5,33,"iz",90,34,"ad",15,35,"iz",90];
-        $arrayTF=[];
+    $arrayT=[];
+    $arrayTF=[];
+    if($pintar==True){
+        $arrayT=[1,"de",90,2,"ad",15,3,"iz",90,4,"ad",5,4,"iz",90,6,"ad",10,7,"de",90,8,"ad",10,9,"de",90,10,"ad",10,11,"iz",90,12,"ad",5,13,"iz",90,14,"ad",10,15,"de",90,16,"ad",10,17,"iz",90,18,"ad",10,19,"iz",90,20,"ad",10,21,"de",90,22,"ad",10,23,"iz",90,24,"ad",5,25,"iz",90,26,"ad",10,27,"de",90,28,"ad",10,29,"de",90,30,"ad",10,31,"iz",90,32,"ad",5,33,"iz",90,34,"ad",15,35,"iz",90];
         for($i=0;$i<count($arrayT);$i+=3){
             $arrayTF[]=["id"=>$arrayT[$i],"comando"=>$arrayT[$i+1],"valor"=>$arrayT[$i+2]];
         }
+    }
     
         for($i=0;$i<count($arrayTF);$i++){ 
             if($arrayTF[$conteo]["comando"]=="de") {
