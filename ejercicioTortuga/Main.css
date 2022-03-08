@@ -1,0 +1,16 @@
+p{
+    font-size: 1.2em;
+    display: block;
+}
+input[type="text"] {
+    width: 250px;
+    margin-left: 125px;
+    font-size: 1.2em;
+  }
+input[type="submit"] {
+    width: 100px;
+    height: 30px;
+    background: #333;
+    color: white;
+    margin-left: 200px;
+  }
