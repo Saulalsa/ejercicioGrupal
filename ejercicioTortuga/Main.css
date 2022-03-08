@@ -1,12 +1,15 @@
+/* decoracion del texto de alerta */
 p{
     font-size: 1.2em;
     display: block;
 }
+/* decoracion de la linea para introducir comandos */
 input[type="text"] {
     width: 250px;
     margin-left: 125px;
     font-size: 1.2em;
   }
+/* decoracion del boton */
 input[type="submit"] {
     width: 100px;
     height: 30px;
