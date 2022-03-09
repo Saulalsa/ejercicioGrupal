@@ -1,3 +1,4 @@
+/*Oscar Grupo 1*/
 /* decoracion del texto de alerta */
 p{
     font-size: 1.2em;
@@ -6,14 +7,18 @@ p{
 /* decoracion de la linea para introducir comandos */
 input[type="text"] {
     width: 250px;
-    margin-left: 125px;
+    margin-left: 150px;
     font-size: 1.2em;
   }
 /* decoracion del boton */
-input[type="submit"] {
+input[type="button"] {
     width: 100px;
-    height: 30px;
+    height: 25px;
     background: #333;
     color: white;
-    margin-left: 200px;
+    margin-left: 225px;
+  }
+  svg{
+    border: black solid 1px;
+    margin-left: 25px;
   }

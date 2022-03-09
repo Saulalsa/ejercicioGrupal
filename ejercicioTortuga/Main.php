@@ -1,3 +1,7 @@
+<?
+session_start();
+//Oscar Grupo 1
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,32 +18,33 @@
     <h1>Grupo 1.</h1>
 
     <?php
-    include("artista.php");
+        include("artista.php");
 
-if (isset($_POST['bCom'])){
-    $strCom = $_POST['strCom'];
-    //patron para que si se pulsa el boton y no hay ningun comadno, pida introducir comandos
-    if(empty($strCom)){
-        echo "<p style='color:red'> *Introduzca algun comando* </p>";
-        //patron para que el comando tenga que estar escrito en minusculas
-    } else if(preg_match('`[A-Z]`',$strCom)){ 
-        echo "<p style='color:red'> *El comando debe estar escrito en minusculas *</p>";
-        //patron para que el comando tenga que tener numeros
-    } else if  (!preg_match('`[0-9]`',$strCom)) { 
-        echo "<p style='color:red'> *El comando debe tener valores numericos *</p>";
-        //patron para que el comando tenga cualquier tipo de letra
-    } else if(!preg_match('`[a-z]`',$strCom)){ 
-        echo "<p style='color:red'> *El comando debe tener letras *</p>";
-    }
-}
-
+        if (isset($_POST['bCom'])){
+            $strCom = $_POST['strCom'];
+            //patron para que si se pulsa el boton y no hay ningun comadno, pida introducir comandos
+            if(empty($strCom)){
+                echo "<p style='color:red'> *Introduzca algun comando* </p>";
+                //patron para que el comando tenga que estar escrito en minusculas
+            } else if(preg_match('`[A-Z]`',$strCom)){ 
+                echo "<p style='color:red'> *El comando debe estar escrito en minusculas *</p>";
+                //patron para que el comando tenga que tener numeros
+            } else if  (!preg_match('`[0-9]`',$strCom)) { 
+                echo "<p style='color:red'> *El comando debe tener valores numericos *</p>";
+                //patron para que el comando tenga cualquier tipo de letra
+            } else if(!preg_match('`[a-z]`',$strCom)){ 
+                echo "<p style='color:red'> *El comando debe tener letras *</p>";
+            }
+        }
     ?>
     <!--formulario, metodo post -->
     <form action="" method="post">
     <input type="text" name="strCom" style="width=250" /><br />
-    <br><input type="submit" name="bCom" value="Enviar" style="" />
+    <br><input type="submit" name="bCom" value="Enviar" style=""/>
 
 </form>
 </body>
-
+<?php
+include("variables.php");
+?>
 </html>
