@@ -10,7 +10,7 @@
 
         $array = [];
 
-        while ($elemento = $resultadoObtener->fetch()) {
+        foreach($resultadoObtener as $elemento) {
             $fila['id'] = $elemento['id'];
             $fila['comando'] = $elemento['comando'];
             $fila['valor'] = $elemento['valor'];
@@ -48,18 +48,18 @@
     $conteo=0;
     $pintar=True;
     
-    echo("<svg width=$tamano height=$tamano>");
     if (isset($array)) {
+        echo("<svg width=$tamano height=$tamano>");
         for($i=0;$i<count($array);$i++){ 
             if($array[$conteo]["comando"]=="bp") {
                 $lineas=[];
             }elseif($array[$conteo]["comando"]=="de") {
-                $grado = $grado + (int)$array[$conteo]["valor"];
+                $grado = $grado + $array[$conteo]["valor"];
                 if($grado>=360){
                     $grado = $grado - 360;
                 }
             }elseif($array[$conteo]["comando"]=="iz") {
-                $grado = $grado - (int)$array[$conteo]["valor"];
+                $grado = $grado - $array[$conteo]["valor"];
                 if($grado<0){
                     $grado = 360 + $grado;
                 }
@@ -80,39 +80,39 @@
                     $xf=$centrox;
                     $yf=$centroy-$valor;
                 }elseif($grado==90){
-                    $valor = (int)$array[$conteo]["valor"];
+                    $valor = $array[$conteo]["valor"];
                     $xf=$centrox+$valor;
                     $yf=$centroy;
                 }elseif($grado==180){
-                    $valor = (int)$array[$conteo]["valor"];
+                    $valor = $array[$conteo]["valor"];
                     $xf=$centrox;
                     $yf=$centroy+$valor;
                 }elseif($grado==270){
-                    $valor = (int)$array[$conteo]["valor"];
+                    $valor = $array[$conteo]["valor"];
                     $xf=$centrox-$valor;
                     $yf=$centroy;
                 }elseif($grado<90&&$grado>0){
                     $rh=(pi()/180)*(90-($grado));
-                    $cos=(cos($rh)*(int)$array[$conteo]["valor"]);
-                    $sin=(sin($rh)*(int)$array[$conteo]["valor"]);
+                    $cos=(cos($rh)*$array[$conteo]["valor"]);
+                    $sin=(sin($rh)*$array[$conteo]["valor"]);
                     $xf=$centrox+$cos;
                     $yf=$centroy-$sin;
                 }elseif($grado<180&&$grado>90){
                     $rh=(pi()/180)*(180-($grado));
-                    $cos=(cos($rh)*(int)$array[$conteo]["valor"]);
-                    $sin=(sin($rh)*(int)$array[$conteo]["valor"]);
+                    $cos=(cos($rh)*$array[$conteo]["valor"]);
+                    $sin=(sin($rh)*$array[$conteo]["valor"]);
                     $xf=$centrox+$sin;
                     $yf=$centroy+$cos;
                 }elseif($grado<270&&$grado>180){
                     $rh=(pi()/180)*(270-($grado));
-                    $cos=(cos($rh)*(int)$array[$conteo]["valor"]);
-                    $sin=(sin($rh)*(int)$array[$conteo]["valor"]);
+                    $cos=(cos($rh)*$array[$conteo]["valor"]);
+                    $sin=(sin($rh)*$array[$conteo]["valor"]);
                     $xf=$centrox-$cos;
                     $yf=$centroy+$sin;
                 }elseif($grado<360&&$grado>270){
                     $rh=(pi()/180)*(360-($grado));
-                    $cos=(cos($rh)*(int)$array[$conteo]["valor"]);
-                    $sin=(sin($rh)*(int)$array[$conteo]["valor"]);
+                    $cos=(cos($rh)*$array[$conteo]["valor"]);
+                    $sin=(sin($rh)*$array[$conteo]["valor"]);
                     $xf=$centrox-$sin;
                     $yf=$centroy-$cos;
                 }
@@ -121,39 +121,39 @@
                 $centroy=$yf;
             }elseif($array[$conteo]["comando"]=="at") {
                 if($grado==0){
-                    $sin = (int)$array[$conteo]["valor"];
+                    $sin = $array[$conteo]["valor"];
                     $xf=$centrox;
                     $yf=$centroy+$sin;
                 }elseif($grado==90){
-                    $cos = (int)$array[$conteo]["valor"];
+                    $cos = $array[$conteo]["valor"];
                     $xf=$centrox-$cos;
                     $yf=$centroy;
                 }elseif($grado==180){
-                    $sin = (int)$array[$conteo]["valor"];
+                    $sin = $array[$conteo]["valor"];
                     $xf=$centrox;
                     $yf=$centroy-$sin;
                 }elseif($grado==270){
-                    $cos = (int)$array[$conteo]["valor"];
+                    $cos = $array[$conteo]["valor"];
                     $xf=$centrox+$cos;
                     $yf=$centroy;
                 }elseif($grado<90&&$grado>0){
-                    $cos = cos(90-$grado)*(int)$array[$conteo]["valor"];
-                    $sin = sin(90-$grado)*(int)$array[$conteo]["valor"];
+                    $cos = cos(90-$grado)*$array[$conteo]["valor"];
+                    $sin = sin(90-$grado)*$array[$conteo]["valor"];
                     $xf=$centrox+$cos;
                     $yf=$centroy-$sin;
                 }elseif($grado<180&&$grado>90){
-                    $cos = cos(180-$grado)*(int)$array[$conteo]["valor"];
-                    $sin = sin(180-$grado)*(int)$array[$conteo]["valor"];
+                    $cos = cos(180-$grado)*$array[$conteo]["valor"];
+                    $sin = sin(180-$grado)*$array[$conteo]["valor"];
                     $xf=$centrox+$sin;
                     $yf=$centroy+$cos;
                 }elseif($grado<270&&$grado>180){
-                    $cos = cos(270-$grado)*(int)$array[$conteo]["valor"];
-                    $sin = sin(270-$grado)*(int)$array[$conteo]["valor"];
+                    $cos = cos(270-$grado)*$array[$conteo]["valor"];
+                    $sin = sin(270-$grado)*$array[$conteo]["valor"];
                     $xf=$centrox-$cos;
                     $yf=$centroy+$sin;
                 }elseif($grado<360&&$grado>270){
-                    $cos = cos(360-$grado)*(int)$array[$conteo]["valor"];
-                    $sin = sin(360-$grado)*(int)$array[$conteo]["valor"];
+                    $cos = cos(360-$grado)*$array[$conteo]["valor"];
+                    $sin = sin(360-$grado)*$array[$conteo]["valor"];
                     $xf=$centrox-$sin;
                     $yf=$centroy-$cos;
                 }
@@ -162,6 +162,10 @@
                 $centroy=$yf;
             }
             $conteo++;
+        }
+
+        foreach ($lineas as $value) {
+            echo($value);
         }
         
         //creacion de tortuga
@@ -178,54 +182,54 @@
         
             for($i=0;$i<count($arrayTF);$i++){ 
                 if($arrayTF[$conteo]["comando"]=="de") {
-                    $grado = $grado + (int)$arrayTF[$conteo]["valor"];
+                    $grado = $grado + $arrayTF[$conteo]["valor"];
                     if($grado>=360){
                         $grado = $grado - 360;
                     }
                 }elseif($arrayTF[$conteo]["comando"]=="iz") {
-                    $grado = $grado - (int)$arrayTF[$conteo]["valor"];
+                    $grado = $grado - $arrayTF[$conteo]["valor"];
                     if($grado<0){
                         $grado = 360 + $grado;
                     }
                 }elseif($arrayTF[$conteo]["comando"]=="ad") {
                     if($grado==0){
-                        $valor = (int)$arrayTF[$conteo]["valor"];
+                        $valor = $arrayTF[$conteo]["valor"];
                         $xf=$centrox;
                         $yf=$centroy-$valor;
                     }elseif($grado==90){
-                        $valor = (int)$arrayTF[$conteo]["valor"];
+                        $valor = $arrayTF[$conteo]["valor"];
                         $xf=$centrox+$valor;
                         $yf=$centroy;
                     }elseif($grado==180){
-                        $valor = (int)$arrayTF[$conteo]["valor"];
+                        $valor = $arrayTF[$conteo]["valor"];
                         $xf=$centrox;
                         $yf=$centroy+$valor;
                     }elseif($grado==270){
-                        $valor = (int)$arrayTF[$conteo]["valor"];
+                        $valor = $arrayTF[$conteo]["valor"];
                         $xf=$centrox-$valor;
                         $yf=$centroy;
                     }elseif($grado<90&&$grado>0){
                         $rh=(pi()/180)*(90-($grado));
-                        $cos=(cos($rh)*(int)$arrayTF[$conteo]["valor"]);
-                        $sin=(sin($rh)*(int)$arrayTF[$conteo]["valor"]);
+                        $cos=(cos($rh)*$arrayTF[$conteo]["valor"]);
+                        $sin=(sin($rh)*$arrayTF[$conteo]["valor"]);
                         $xf=$centrox+$cos;
                         $yf=$centroy-$sin;
                     }elseif($grado<180&&$grado>90){
                         $rh=(pi()/180)*(180-($grado));
-                        $cos=(cos($rh)*(int)$arrayTF[$conteo]["valor"]);
-                        $sin=(sin($rh)*(int)$arrayTF[$conteo]["valor"]);
+                        $cos=(cos($rh)*$arrayTF[$conteo]["valor"]);
+                        $sin=(sin($rh)*$arrayTF[$conteo]["valor"]);
                         $xf=$centrox+$sin;
                         $yf=$centroy+$cos;
                     }elseif($grado<270&&$grado>180){
                         $rh=(pi()/180)*(270-($grado));
-                        $cos=(cos($rh)*(int)$arrayTF[$conteo]["valor"]);
-                        $sin=(sin($rh)*(int)$arrayTF[$conteo]["valor"]);
+                        $cos=(cos($rh)*$arrayTF[$conteo]["valor"]);
+                        $sin=(sin($rh)*$arrayTF[$conteo]["valor"]);
                         $xf=$centrox-$cos;
                         $yf=$centroy+$sin;
                     }elseif($grado<360&&$grado>270){
                         $rh=(pi()/180)*(360-($grado));
-                        $cos=(cos($rh)*(int)$arrayTF[$conteo]["valor"]);
-                        $sin=(sin($rh)*(int)$arrayTF[$conteo]["valor"]);
+                        $cos=(cos($rh)*$arrayTF[$conteo]["valor"]);
+                        $sin=(sin($rh)*$arrayTF[$conteo]["valor"]);
                         $xf=$centrox-$sin;
                         $yf=$centroy-$cos;
                     }
@@ -275,6 +279,9 @@
                     $centroy=$yf;
                 }
                 $conteo++;
+            }
+            foreach ($lineas as $value) {
+                echo($value);
             }
     }
     echo("</svg>");

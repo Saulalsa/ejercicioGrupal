@@ -5,8 +5,6 @@
 
 if (isset($_POST["strCom"])) {
     $arrayBBDD = $_SESSION["arrayBBDD"];
-    print_r($arrayBBDD);
-    print_r($_SESSION["arrayBBDD"]);
     if ($_POST['strCom'] == implode(" ", $arrayBBDD)) {
 
     } else {
