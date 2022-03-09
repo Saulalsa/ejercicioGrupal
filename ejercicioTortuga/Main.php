@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,11 +12,9 @@
 
 <body>
     <h1>Grupo 1.</h1>
-    <!--tiene 500 de ancho y de alto para poner la tortuga en la posicion 250,250 -->
-    <svg width="500" height="500">
-    <rect width="500" height="500" style="fill:rgb(255,240,255);stroke-width:5;stroke:rgb(0,0,0)" />
-    </svg>
+
     <?php
+    include("artista.php");
 
 if (isset($_POST['bCom'])){
     $strCom = $_POST['strCom'];
