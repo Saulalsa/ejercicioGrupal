@@ -12,13 +12,13 @@ input[type="text"] {
   }
 /* decoracion del boton */
 input[type="submit"] {
-    width: 100px;
-    height: 25px;
-    background: #333;
-    color: white;
-    margin-left: 225px;
-  }
+  width: 100px;
+  height: 25px;
+  background: #333;
+  color: white;
+  margin-left: 225px;
+}
   svg{
-    border: red solid 1px;
+    border: black solid 1px;
     margin-left: 25px;
   }

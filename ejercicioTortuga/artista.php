@@ -49,6 +49,7 @@
     $color="#000000";
     $conteo=0;
     $pintar=True;
+    $vueltas = 0;
     
     //Comprueba que existe array
     if (isset($array)) {
@@ -60,15 +61,17 @@
                 $lineas=[];
             }elseif($array[$conteo]["comando"]=="de" || $array[$conteo]["comando"]=="derecha") {
                 $grado = $grado + $array[$conteo]["valor"];
-                if($grado>=360){
-                    //si es mayor 360 resta una vuelta
-                    $grado = $grado / 360;
-                }
+                    if($grado>=360){
+                        $vueltas = (int) ($grado / 360);
+                        for ($i2=0; $i2 < $vueltas; $i2++) { 
+                            $grado = $grado - 360;
+                        }
+                    }
             }elseif($array[$conteo]["comando"]=="iz" || $array[$conteo]["comando"]=="izquierda") {
                 $grado = $grado - $array[$conteo]["valor"];
                 if($grado<0){
                     //si es mayor 360 suma una vuelta
-                    $grado = 360 * $grado;
+                    $grado = 360 + $grado;
                 }
             }elseif($array[$conteo]["comando"]=="sl" || $array[$conteo]["comando"]=="subirlapiz") {
                 $color="#FFFFFF";
@@ -128,7 +131,7 @@
                     $xf=$centrox-$sin;
                     $yf=$centroy-$cos;
                 }
-                $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='5' />");
+                $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='1' />");
                 //Nuevo centro
                 $centrox=$xf;
                 $centroy=$yf;
@@ -175,7 +178,7 @@
                     $xf=$centrox-$sin;
                     $yf=$centroy-$cos;
                 }
-                $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='verde' stroke-width='5' />");
+                $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='1' />");
                 //Nuevo centro
                 $centrox=$xf;
                 $centroy=$yf;
@@ -192,6 +195,7 @@
         $conteo=0;
         $arrayT=[];
         $arrayTF=[];
+        $color="#00ff0f";
         if($pintar==True){
             $arrayT=[1,"de",90,2,"ad",15,3,"iz",90,4,"ad",5,4,"iz",90,6,"ad",10,7,"de",90,8,"ad",10,9,"de",90,10,"ad",10,11,"iz",90,12,"ad",5,13,"iz",90,14,"ad",10,15,"de",90,16,"ad",10,17,"iz",90,18,"ad",10,19,"iz",90,20,"ad",10,21,"de",90,22,"ad",10,23,"iz",90,24,"ad",5,25,"iz",90,26,"ad",10,27,"de",90,28,"ad",10,29,"de",90,30,"ad",10,31,"iz",90,32,"ad",5,33,"iz",90,34,"ad",15,35,"iz",90];
             for($i=0;$i<count($arrayT);$i+=3){

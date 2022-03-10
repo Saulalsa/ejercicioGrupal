@@ -22,7 +22,9 @@ if (isset($_POST["strCom"])) {
     $casa = [];
     $valoresInt = [];
     $default = [];
-    foreach ($arrayStr as $dato) {
+    for ($i=0;$i<count($arrayStr);$i++) {
+        //Obtenemos el dato para trabajar con él
+        $dato = $arrayStr[$i];
         //Cuando convertimos en int una string no numerica el valor es 0
         $saleInt = (int) $dato; //integer
         if ($saleInt == 0) {
@@ -81,6 +83,10 @@ if (isset($_POST["strCom"])) {
         if ($arrayBBDD[$contador] == "bp" || $arrayBBDD[$contador] == "sl" || $arrayBBDD[$contador] == "bl" || $arrayBBDD[$contador] == "ot" || $arrayBBDD[$contador] == "mt" || $arrayBBDD[$contador] == "casa") {
             $contador++;
             $arrayBBDD[$contador] = "T";
+        } elseif ($arrayBBDD[$contador] == "repeat") {
+            $contador++;
+            $veces = $arrayBBDD[$contador];
+
         } else {
             $contador++;
         }
