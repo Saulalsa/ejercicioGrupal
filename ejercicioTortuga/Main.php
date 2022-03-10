@@ -40,7 +40,7 @@ session_start();
     <!--formulario, metodo post -->
     <form action="" method="post">
     <input type="text" name="strCom" style="width=250" /><br />
-    <br><input type="submit" name="bCom" value="Enviar" style=""/>
+    <br><input type="submit" class="boton" name="bCom" value="Enviar" style=""/>
 
 </form>
 </body>

@@ -11,7 +11,6 @@ if (isset($_POST["strCom"])) {
         $str = $_POST["strCom"];
         $btn = $_POST["bCom"];
         $arrayStr = explode(" ", $str);
-        print_r($arrayStr);
         $arrayBBDD = []; //Array Final para la BBDD
         $contador = 0;
         $contadorDefault = 0;

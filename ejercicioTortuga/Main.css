@@ -5,15 +5,15 @@ p{
     display: block;
 }
 /* decoracion de la linea para introducir comandos */
-input[type="text"] {
+input[type="text"]{
     width: 250px;
     margin-left: 150px;
     font-size: 1.2em;
   }
 /* decoracion del boton */
-input[type="button"] {
+.boton{
     width: 100px;
-    height: 25px;
+    height: 23px;
     background: #333;
     color: white;
     margin-left: 225px;
