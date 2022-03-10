@@ -128,7 +128,7 @@
                     $xf=$centrox-$sin;
                     $yf=$centroy-$cos;
                 }
-                $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='5' />");
+                $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='1' />");
                 //Nuevo centro
                 $centrox=$xf;
                 $centroy=$yf;
@@ -175,7 +175,7 @@
                     $xf=$centrox-$sin;
                     $yf=$centroy-$cos;
                 }
-                $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='5' />");
+                $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='1' />");
                 //Nuevo centro
                 $centrox=$xf;
                 $centroy=$yf;
@@ -192,6 +192,7 @@
         $conteo=0;
         $arrayT=[];
         $arrayTF=[];
+        $color="#00ff0f";
         if($pintar==True){
             $arrayT=[1,"de",90,2,"ad",15,3,"iz",90,4,"ad",5,4,"iz",90,6,"ad",10,7,"de",90,8,"ad",10,9,"de",90,10,"ad",10,11,"iz",90,12,"ad",5,13,"iz",90,14,"ad",10,15,"de",90,16,"ad",10,17,"iz",90,18,"ad",10,19,"iz",90,20,"ad",10,21,"de",90,22,"ad",10,23,"iz",90,24,"ad",5,25,"iz",90,26,"ad",10,27,"de",90,28,"ad",10,29,"de",90,30,"ad",10,31,"iz",90,32,"ad",5,33,"iz",90,34,"ad",15,35,"iz",90];
             for($i=0;$i<count($arrayT);$i+=3){
@@ -203,12 +204,12 @@
                 if($arrayTF[$conteo]["comando"]=="de") {
                     $grado = $grado + $arrayTF[$conteo]["valor"];
                     if($grado>=360){
-                        $grado = $grado - 360;
+                        $grado = $grado % 360;
                     }
                 }elseif($arrayTF[$conteo]["comando"]=="iz") {
                     $grado = $grado - $arrayTF[$conteo]["valor"];
                     if($grado<0){
-                        $grado = 360 + $grado;
+                        $grado = -1*($grado % 360);
                     }
                 }elseif($arrayTF[$conteo]["comando"]=="ad") {
                     if($grado==0){
