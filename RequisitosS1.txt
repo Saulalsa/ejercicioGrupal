@@ -1,0 +1,58 @@
+Requisitos-S1
+
+Method POST
+input text name='strCom'
+submit name 'bCom'
+
+FORM {
+main.css
+main.php
+}
+
+Tortuga ===== ===== =====
+
+ SVG(TORTUGA)
+
+  adelante(ad) int;
+  atras(at) int;
+  derecha(de) int;
+  izquierda(iz) int;
+  borrapantalla(bp) "T";limpia
+  subirlapiz(sl) "T";No pinta
+  bajarlapiz(bl) "T";Pinta
+  ocultartortuga(ot) "T";
+  mostrartortuga(mt) "T";
+  casa "T";Vuelve al origen
+}
+
+Base de Datos (logoBBDD) {
+Tabla (comandos)
+  id INT;(PRIMARY KEY)
+  comando VARCHAR;
+  valor VARCHAR;
+  id_user INT;(FOREIGN KEY)
+}
+
+Tabla (usuarios) {
+  id_user INT;(PRIMARY KEY)
+  nombre VARCHAR;
+  pass VARCHAR;
+}
+
+Oscar - Formularios control de expresiones y (main.php y main.css)
+Alvaro - Obtención de varibles por POST, subirlas a la BBDD (variables.php)
+Sergio - Conexion BBDD, Creación BBDD y Consultas SQL (CreaccionBBDD).
+Sasul - Bucles y condicionales para el control de lo que se dibuja(artista.php).
+
+Reuniones:
+07-03-22 duración - 1h
+10-03-22 duración - 1h
+
+==== Proyecto Subido a GITHub ====
+
+Ramas :
+ main
+ saul
+ sergio
+ oscar
+ alvaro
