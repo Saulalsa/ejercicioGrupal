@@ -62,13 +62,13 @@
                 $grado = $grado + $array[$conteo]["valor"];
                 if($grado>=360){
                     //si es mayor 360 resta una vuelta
-                    $grado = $grado / 360;
+                    $grado = $grado - 360;
                 }
             }elseif($array[$conteo]["comando"]=="iz" || $array[$conteo]["comando"]=="izquierda") {
                 $grado = $grado - $array[$conteo]["valor"];
                 if($grado<0){
                     //si es mayor 360 suma una vuelta
-                    $grado = 360 * $grado;
+                    $grado = 360 + $grado;
                 }
             }elseif($array[$conteo]["comando"]=="sl" || $array[$conteo]["comando"]=="subirlapiz") {
                 $color="#FFFFFF";
