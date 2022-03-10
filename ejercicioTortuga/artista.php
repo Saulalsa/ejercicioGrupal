@@ -175,7 +175,7 @@
                     $xf=$centrox-$sin;
                     $yf=$centroy-$cos;
                 }
-                $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='verde' stroke-width='5' />");
+                $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='5' />");
                 //Nuevo centro
                 $centrox=$xf;
                 $centroy=$yf;
