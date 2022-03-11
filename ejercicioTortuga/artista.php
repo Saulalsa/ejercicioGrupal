@@ -49,7 +49,6 @@
     $color="#000000";
     $conteo=0;
     $pintar=True;
-    $vueltas = 0;
     
     //Comprueba que existe array
     if (isset($array)) {
@@ -59,14 +58,15 @@
         for($i=0;$i<count($array);$i++){ 
             if($array[$conteo]["comando"]=="bp" || $array[$conteo]["comando"]=="borrarpantalla") {
                 $lineas=[];
+                $centrox=$tamano/2;
+                $centroy=$tamano/2;
+                $grado=0;
             }elseif($array[$conteo]["comando"]=="de" || $array[$conteo]["comando"]=="derecha") {
                 $grado = $grado + $array[$conteo]["valor"];
-                    if($grado>=360){
-                        $vueltas = (int) ($grado / 360);
-                        for ($i2=0; $i2 < $vueltas; $i2++) { 
-                            $grado = $grado - 360;
-                        }
-                    }
+                if($grado>=360){
+                    //si es mayor 360 resta una vuelta
+                    $grado = $grado - 360;
+                }
             }elseif($array[$conteo]["comando"]=="iz" || $array[$conteo]["comando"]=="izquierda") {
                 $grado = $grado - $array[$conteo]["valor"];
                 if($grado<0){
@@ -80,6 +80,7 @@
             }elseif ($array[$conteo]["comando"]=="casa") {
                 $centrox=$tamano/2;
                 $centroy=$tamano/2;
+                $grado=0;
             }elseif($array[$conteo]["comando"]=="ot" || $array[$conteo]["comando"]=="ocultartortuga"){
                 $pintar=False;
             }elseif($array[$conteo]["comando"]=="mt" || $array[$conteo]["comando"]=="mostrartortuga"){
@@ -103,28 +104,28 @@
                     $xf=$centrox-$valor;
                     $yf=$centroy;
                 }elseif($grado<90&&$grado>0){
-                    //Calculos de trigonomrtria para hayar punto final de la recta
+                    //Calculos de trigonometria para hayar punto final de la recta
                     $rh=(pi()/180)*(90-($grado));
                     $cos=(cos($rh)*$array[$conteo]["valor"]);
                     $sin=(sin($rh)*$array[$conteo]["valor"]);
                     $xf=$centrox+$cos;
                     $yf=$centroy-$sin;
                 }elseif($grado<180&&$grado>90){
-                    //Calculos de trigonomrtria para hayar punto final de la recta
+                    //Calculos de trigonometria para hayar punto final de la recta
                     $rh=(pi()/180)*(180-($grado));
                     $cos=(cos($rh)*$array[$conteo]["valor"]);
                     $sin=(sin($rh)*$array[$conteo]["valor"]);
                     $xf=$centrox+$sin;
                     $yf=$centroy+$cos;
                 }elseif($grado<270&&$grado>180){
-                    //Calculos de trigonomrtria para hayar punto final de la recta
+                    //Calculos de trigonometria para hayar punto final de la recta
                     $rh=(pi()/180)*(270-($grado));
                     $cos=(cos($rh)*$array[$conteo]["valor"]);
                     $sin=(sin($rh)*$array[$conteo]["valor"]);
                     $xf=$centrox-$cos;
                     $yf=$centroy+$sin;
                 }elseif($grado<360&&$grado>270){
-                    //Calculos de trigonomrtria para hayar punto final de la recta
+                    //Calculos de trigonometria para hayar punto final de la recta
                     $rh=(pi()/180)*(360-($grado));
                     $cos=(cos($rh)*$array[$conteo]["valor"]);
                     $sin=(sin($rh)*$array[$conteo]["valor"]);
@@ -138,45 +139,49 @@
             }elseif($array[$conteo]["comando"]=="at" || $array[$conteo]["comando"]=="atras") {
                 //Condicionales para dibujar dependiendo del grado
                 if($grado==0){
-                    $sin = $array[$conteo]["valor"];
+                    $valor = $array[$conteo]["valor"];
                     $xf=$centrox;
-                    $yf=$centroy+$sin;
+                    $yf=$centroy+$valor;
                 }elseif($grado==90){
-                    $cos = $array[$conteo]["valor"];
-                    $xf=$centrox-$cos;
+                    $valor = $array[$conteo]["valor"];
+                    $xf=$centrox-$valor;
                     $yf=$centroy;
                 }elseif($grado==180){
-                    $sin = $array[$conteo]["valor"];
+                    $valor = $array[$conteo]["valor"];
                     $xf=$centrox;
-                    $yf=$centroy-$sin;
+                    $yf=$centroy-$valor;
                 }elseif($grado==270){
-                    $cos = $array[$conteo]["valor"];
-                    $xf=$centrox+$cos;
+                    $valor = $array[$conteo]["valor"];
+                    $xf=$centrox+$valor;
                     $yf=$centroy;
                 }elseif($grado<90&&$grado>0){
-                    //Calculos de trigonomrtria para hayar punto final de la recta
-                    $cos = cos(90-$grado)*$array[$conteo]["valor"];
-                    $sin = sin(90-$grado)*$array[$conteo]["valor"];
-                    $xf=$centrox+$cos;
-                    $yf=$centroy-$sin;
-                }elseif($grado<180&&$grado>90){
-                    //Calculos de trigonomrtria para hayar punto final de la recta
-                    $cos = cos(180-$grado)*$array[$conteo]["valor"];
-                    $sin = sin(180-$grado)*$array[$conteo]["valor"];
-                    $xf=$centrox+$sin;
-                    $yf=$centroy+$cos;
-                }elseif($grado<270&&$grado>180){
-                    //Calculos de trigonomrtria para hayar punto final de la recta
-                    $cos = cos(270-$grado)*$array[$conteo]["valor"];
-                    $sin = sin(270-$grado)*$array[$conteo]["valor"];
+                    //Calculos de trigonometria para hayar punto final de la recta
+                    $rh=(pi()/180)*(90-($grado));
+                    $cos=(cos($rh)*$array[$conteo]["valor"]);
+                    $sin=(sin($rh)*$array[$conteo]["valor"]);
                     $xf=$centrox-$cos;
                     $yf=$centroy+$sin;
-                }elseif($grado<360&&$grado>270){
-                    //Calculos de trigonomrtria para hayar punto final de la recta
-                    $cos = cos(360-$grado)*$array[$conteo]["valor"];
-                    $sin = sin(360-$grado)*$array[$conteo]["valor"];
+                }elseif($grado<180&&$grado>90){
+                    //Calculos de trigonometria para hayar punto final de la recta
+                    $rh=(pi()/180)*(180-($grado));
+                    $cos=(cos($rh)*$array[$conteo]["valor"]);
+                    $sin=(sin($rh)*$array[$conteo]["valor"]);
                     $xf=$centrox-$sin;
                     $yf=$centroy-$cos;
+                }elseif($grado<270&&$grado>180){
+                    //Calculos de trigonometria para hayar punto final de la recta
+                    $rh=(pi()/180)*(270-($grado));
+                    $cos=(cos($rh)*$array[$conteo]["valor"]);
+                    $sin=(sin($rh)*$array[$conteo]["valor"]);
+                    $xf=$centrox+$cos;
+                    $yf=$centroy-$sin;
+                }elseif($grado<360&&$grado>270){
+                    //Calculos de trigonometria para hayar punto final de la recta
+                    $rh=(pi()/180)*(360-($grado));
+                    $cos=(cos($rh)*$array[$conteo]["valor"]);
+                    $sin=(sin($rh)*$array[$conteo]["valor"]);
+                    $xf=$centrox+$sin;
+                    $yf=$centroy+$cos;
                 }
                 $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='1' />");
                 //Nuevo centro

@@ -11,7 +11,6 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css" title="Color">
-    <link rel="icon" type="image/x-icon" href="https://c.tenor.com/QIMhYYbv6wgAAAAi/le_trtl-trtl.gif">
 </head>
 
 <body>
