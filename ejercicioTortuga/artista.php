@@ -200,9 +200,10 @@
         $conteo=0;
         $arrayT=[];
         $arrayTF=[];
-        $color="#00ff0f";
+        $color="#000000";
         if($pintar==True){
-            $arrayT=[1,"de",90,2,"ad",15,3,"iz",90,4,"ad",5,4,"iz",90,6,"ad",10,7,"de",90,8,"ad",10,9,"de",90,10,"ad",10,11,"iz",90,12,"ad",5,13,"iz",90,14,"ad",10,15,"de",90,16,"ad",10,17,"iz",90,18,"ad",10,19,"iz",90,20,"ad",10,21,"de",90,22,"ad",10,23,"iz",90,24,"ad",5,25,"iz",90,26,"ad",10,27,"de",90,28,"ad",10,29,"de",90,30,"ad",10,31,"iz",90,32,"ad",5,33,"iz",90,34,"ad",15,35,"iz",90];
+            // $arrayT=[1,"de",90,2,"ad",15,3,"iz",90,4,"ad",5,4,"iz",90,6,"ad",10,7,"de",90,8,"ad",10,9,"de",90,10,"ad",10,11,"iz",90,12,"ad",5,13,"iz",90,14,"ad",10,15,"de",90,16,"ad",10,17,"iz",90,18,"ad",10,19,"iz",90,20,"ad",10,21,"de",90,22,"ad",10,23,"iz",90,24,"ad",5,25,"iz",90,26,"ad",10,27,"de",90,28,"ad",10,29,"de",90,30,"ad",10,31,"iz",90,32,"ad",5,33,"iz",90,34,"ad",15,35,"iz",90];
+            $arrayT=[1,"de",90,2,"ad",25,3,"iz",90,4,"ad",5,4,"iz",90,6,"ad",10,7,"de",90,8,"ad",5,9,"iz",90,10,"ad",10,11,"de",90,12,"ad",5,13,"iz",90,14,"ad",10,15,"iz",90,16,"ad",5,17,"de",90,18,"ad",10,19,"iz",90,20,"ad",5,21,"de",90,22,"ad",10,23,"iz",90,24,"ad",5,25,"iz",90,26,"ad",25];
             for($i=0;$i<count($arrayT);$i+=3){
                 $arrayTF[]=["id"=>$arrayT[$i],"comando"=>$arrayT[$i+1],"valor"=>$arrayT[$i+2]];
             }
@@ -261,7 +262,7 @@
                         $xf=$centrox-$sin;
                         $yf=$centroy-$cos;
                     }
-                    $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='5' />");
+                    $lineas[]=("<line x1='$centrox' y1='$centroy' x2='$xf' y2='$yf' stroke='$color' stroke-width='1' />");
                     $centrox=$xf;
                     $centroy=$yf;
                 }elseif($arrayTF[$conteo]["comando"]=="at") {
