@@ -209,7 +209,7 @@
                 }elseif($arrayTF[$conteo]["comando"]=="iz") {
                     $grado = $grado - $arrayTF[$conteo]["valor"];
                     if($grado<0){
-                        $grado = 360 - $grado;
+                        $grado = 360 + $grado;
                     }
                 }elseif($arrayTF[$conteo]["comando"]=="ad") {
                     if($grado==0){
