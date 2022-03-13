@@ -1,5 +1,8 @@
 <?php
 session_start();
+?>
+<script src="jquery-1.3.2.min.js" type="text/javascript"></script>
+<?php
 /*
 Tabla (usuarios) {
   id_user INT;(PRIMARY KEY)
@@ -33,7 +36,7 @@ Tabla (usuarios) {
     // } catch (PDOException $e) {
     // }
 
-    $array=[0=>['id_user'=>'1','perfil'=>'prof','nombre'=>'saul','pass'=>'saul','desc'=>'saul alonso sanchez','activo'=>'true'],1=>['id_user'=>'2','perfil'=>'alum','nombre'=>'pedro','pass'=>'pedro','desc'=>'pedro rajoi casado','activo'=>'true']];
+    $array=[0=>['id_user'=>'1','perfil'=>'prof','nombre'=>'saul','pass'=>'saul','desc'=>'saul alonso sanchez','activo'=>'false'],1=>['id_user'=>'2','perfil'=>'alum','nombre'=>'pedro','pass'=>'pedro','desc'=>'pedro rajoi casado','activo'=>'true']];
     echo("<table border='black solid 1px'>");
     echo("<tr>");
         echo("<td>");
@@ -49,7 +52,7 @@ Tabla (usuarios) {
         echo('pass');
         echo("</td>");
         echo("<td>");
-        echo('desc');
+        echo('desccripcion');
         echo("</td>");
         echo("<td>");
         echo('activo');
@@ -73,22 +76,26 @@ Tabla (usuarios) {
         echo($valor['desc']);
         echo("</td>");
         echo("<td>");
-        echo("<input type='checkbox' checked=".$valor['activo']."'/>");
+        if ($valor['activo']=='true') {
+            echo("<input type='checkbox' id='".$valor['id_user']."' checked />");
+        }elseif ($valor['activo']=='false') {
+            echo("<input type='checkbox' id='".$valor['id_user']."'/>");
+        }
         echo("</td>");
+        echo("<form action='edit.php' method='post'>");
         echo("<td>");
-        echo("<input type='button' id='editar".$valor['id_user']."' value='editar' onclick='".editar($valor['id_user'])."'/>");
+        echo("<input type='submit' name='editar".$valor['id_user']."' value='editar'/>");
         echo("</td>");
+        echo("</form>");
+        echo("<form action='borrar.php' method='post'>");
         echo("<td>");
-        echo("<input type='button' value='borrar' onclick='".editar($valor['id_user'])."'/>");
+        echo("<input type='submit' name='borrar".$valor['id_user']."' value='borrar'/>");
         echo("</td>");
+        echo("</form>");
         echo("</tr>");
     }
     echo("</table>");
-    function editar($id){
-        if (isset($valor['id_user'])) {
-            # code...
-        }
-        $_SESSION["id"]=$id;
-    }
-
-?>
+    echo("<form action='crear.php' method='post'>");
+    echo("<input type='submit' name='crear' value='Crear Usuario' id='crearUser'>");
+    echo("</form>");
+    ?>
