@@ -1,28 +1,28 @@
 <?php
     //Saul Alonso Sanchez Grupo 1
-    // $dsn = "mysql:dbname=logoBBDD;host=db";
-    // $usuarioBD = "alumnado"; 
-    // $claveBD = "alumnado";
-    // try {
-    //     $bd = new PDO($dsn, $usuarioBD, $claveBD);
-    //     $sql3 = "SELECT * FROM comandos";
-    //     $resultadoObtener = $bd->query($sql3);
+    $dsn = "mysql:dbname=logoBBDD;host=db";
+    $usuarioBD = "alumnado"; 
+    $claveBD = "alumnado";
+    try {
+        $bd = new PDO($dsn, $usuarioBD, $claveBD);
+        $sql3 = "SELECT * FROM comandos";
+        $resultadoObtener = $bd->query($sql3);
 
-    //     $array = [];
+        $array = [];
 
-    //     foreach($resultadoObtener as $elemento) {
-    //         $fila['id_user'] = $elemento['id_user'];
-    //         $fila['perfil'] = $elemento['perfil'];
-    //         $fila['nombre'] = $elemento['nombre'];
-    //         $fila['pass'] = $elemento['pass'];
-    //         $fila['desc'] = $elemento['desc'];
-    //         $fila['activo'] = $elemento['activo'];
-    //         $array[] = $fila;
-    //     }
-    // } catch (PDOException $e) {
-    // }
+        foreach($resultadoObtener as $elemento) {
+            $fila['id_user'] = $elemento['id_user'];
+            $fila['perfil'] = $elemento['perfil'];
+            $fila['nombre'] = $elemento['nombre'];
+            $fila['pass'] = $elemento['pass'];
+            $fila['desc'] = $elemento['desc'];
+            $fila['activo'] = $elemento['activo'];
+            $array[] = $fila;
+        }
+    } catch (PDOException $e) {
+    }
 
-    $array=[0=>['id_user'=>'1','perfil'=>'prof','nombre'=>'saul','pass'=>'saul','desc'=>'saul alonso sanchez','activo'=>'false'],1=>['id_user'=>'2','perfil'=>'alum','nombre'=>'pedro','pass'=>'pedro','desc'=>'pedro rajoi casado','activo'=>'true']];
+    // $array=[0=>['id_user'=>'1','perfil'=>'prof','nombre'=>'saul','pass'=>'saul','desc'=>'saul alonso sanchez','activo'=>'false'],1=>['id_user'=>'2','perfil'=>'alum','nombre'=>'pedro','pass'=>'pedro','desc'=>'pedro rajoi casado','activo'=>'true']];
     echo("<table border='black solid 1px'>");
     //Linea de la tabla con la leyenda
     echo("<tr>");
@@ -66,9 +66,9 @@
         echo("<td>");
         //if para colocar el check box activo o no
         if ($valor['activo']=='true') {
-            echo("<input type='checkbox' id='".$valor['id_user']."' checked />");
+            echo("<input type='checkbox' id='".$valor['id_user']."' checked disabled/>");
         }elseif ($valor['activo']=='false') {
-            echo("<input type='checkbox' id='".$valor['id_user']."'/>");
+            echo("<input type='checkbox' id='".$valor['id_user']."' disabled/>");
         }
         echo("</td>");
         //creacion de formulario para acceder al editar usuario
