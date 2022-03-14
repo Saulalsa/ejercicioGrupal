@@ -1,4 +1,6 @@
-
+<?php
+    session_start();
+?>
 <!-- Oscar Bueno Rodriguez Grupo 1 -->
 
 <!DOCTYPE html>
