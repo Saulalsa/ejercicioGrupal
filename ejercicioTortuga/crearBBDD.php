@@ -24,7 +24,7 @@ $claveBD = "alumnado";
 try {
     $bd = new PDO($dsn, $usuarioBD, $claveBD);
     $sql = "CREATE TABLE IF NOT EXISTS usuarios (
-        id_user INT,
+        id_user INT AUTO_INCREMENT,
         perfil VARCHAR(50),
         nombre VARCHAR(255),
         pass VARCHAR(255),
