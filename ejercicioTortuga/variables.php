@@ -150,7 +150,7 @@ if (isset($_POST["strCom"])) {
         try {
             $bd = new PDO($dsn, $usuarioBD, $claveBD);
             $sql2 = "INSERT INTO comandos (comando, valor, id_user, fecha, sesion) VALUES
-                    ('$arrayBBDD[$i]', '" . $arrayBBDD[$i + 1] . "', '$usuario', '$fecha', '$sesion')
+                    ('$arrayBBDD[$i]', '" . $arrayBBDD[$i + 1] . "', '".$usuario[0]["id_user"]."', '$fecha', '$sesion')
                 ";
             $bd->query($sql2);
         } catch (PDOException $e) {

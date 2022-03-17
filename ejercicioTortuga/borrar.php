@@ -54,7 +54,15 @@
     }else {
         try {
             $bd = new PDO($dsn, $usuarioBD, $claveBD);
-            $sql2 = "DELETE FROM usuarios WHERE id_user='".$id."';";
+            $sql2 = "UPDATE usuarios 
+            SET 
+                id_user = '".$id."',
+                perfil = '',
+                nombre = '',
+                pass = '',
+                descripcion = '',
+                activo = false
+            WHERE id_user='".$id."';";
             $bd->query($sql2);
         } catch (PDOException $e) {
         }
