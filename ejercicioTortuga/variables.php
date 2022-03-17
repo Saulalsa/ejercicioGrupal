@@ -11,6 +11,10 @@ if (isset($_POST["strCom"])) {
 
     //    ##### ----- ##### REPEAT ##### ----- #####
 
+    //repite 3 [repite 4 [ad 20 de 30]]
+    //repite 4 [ad 60 de 90] repite 4 [ad 60 iz 90]
+    //repite 4 [ad 60 iz 90] ad 100 de 90
+
     $repeat = explode("repite", $_POST["strCom"]);
 
     //print_r($arrayStr);
@@ -21,15 +25,15 @@ if (isset($_POST["strCom"])) {
             //varios repeat seguidos arreglar repite(repite)
             for ($i = 1; $i + 1 <= count($repeat); $i++) {
                 $str1 = $repeat[$i];
-                $limpia1 = explode("(", $str1);
+                $limpia1 = explode("[", $str1);
                 //print_r($limpia1);
                 if (isset($limpia1[1])) {
                     $str2 = $limpia1[0];
                     $i++;
                     do {
                         $str2 = $str2 - 1;
-                        $limpia2 = explode("(", $repeat[$i]);
-                        $limpia3 = explode(")", $limpia2[1]);
+                        $limpia2 = explode("[", $repeat[$i]);
+                        $limpia3 = explode("]", $limpia2[1]);
                         $espaciado = explode(" ",$limpia3[0]);
                         //print_r($limpia2);
                         for ($n = 1; $n <= (int) $limpia2[0]; $n++) {
@@ -42,7 +46,7 @@ if (isset($_POST["strCom"])) {
                 }
                 else {
                     $str2 = $limpia1[1];
-                    $limpia2 = explode(")", $str2);
+                    $limpia2 = explode("]", $str2);
                     //print_r($limpia2);
                     for ($n = 0; $n < $limpia1[0]; $n++) {
                         foreach (explode(" ", $limpia2[0]) as $comando) {
@@ -53,10 +57,10 @@ if (isset($_POST["strCom"])) {
             }
         } else {
             $str1 = $repeat[1];
-            $limpia1 = explode("(", $str1);
+            $limpia1 = explode("[", $str1);
             //print_r($limpia1);
             $str2 = $limpia1[1];
-            $limpia2 = explode(")", $str2);
+            $limpia2 = explode("]", $str2);
             //print_r($limpia2);
 
             //print_r($limpia1[0]); //el nº de veces que repite
