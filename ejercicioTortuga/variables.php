@@ -12,42 +12,62 @@ if (isset($_POST["strCom"])) {
     //    ##### ----- ##### REPEAT ##### ----- #####
 
     $repeat = explode("repite", $_POST["strCom"]);
+
     //print_r($arrayStr);
     if (count($repeat) > 1) {
-
-        //print_r($repeat);
-        $str1 = $repeat[1];
-        $limpia1 = explode("(", $str1);
-        $str2 = $limpia1[1];
-        $limpia2 = explode(")", $str2);
-
-        //print_r($limpia1[0]); //el nº de veces que repite
-        //print_r($limpia2[1]); //comandos a repetir
-
-        //limpio el array para mantener el orden
-        $arrayStr=[];
-
-        //Se pueden poner comandos antes y despues del repite
-        $repeatInit=explode(" ",$repeat[0]);
-        //print_r($repeatInit);//al hacer el explode, el ultimo 
-        //indice esta vacio y se controla en el for restando 2
-        for ($i=0; $i<=(count($repeatInit)-2);$i++) {
-            $arrayStr[]=$repeatInit[$i];
-        }
-        for ($n = 0;$n<$limpia1[0];$n++) {
-            foreach (explode(" ",$limpia2[0]) as $comando) {
-                $arrayStr[]=$comando;
+        if (count($repeat) > 2) {
+            print_r($repeat);
+            $arrayStr = [];
+            //varios repeat seguidos arreglar repite(repite)
+            for ($i = 1; $i+1 <= count($repeat); $i++) {
+                $str1 = $repeat[$i];
+                $limpia1 = explode("(", $str1);
+                print_r($limpia1);
+                $str2 = $limpia1[1];
+                $limpia2 = explode(")", $str2);
+                print_r($limpia2);
+                for ($n = 0; $n < $limpia1[0]; $n++) {
+                    foreach (explode(" ", $limpia2[0]) as $comando) {
+                        $arrayStr[] = $comando;
+                    }
+                }
             }
         }
-        $repeatFinal=explode(" ",$limpia2[1]);
-        //print_r($repeatFinal);//al hacer el explode, el primer 
-        //indice esta vacio y se controla en el inicio > 0
-        for ($i=1; $i<=(count($repeatFinal)-1);$i++) {
-            $arrayStr[]=$repeatFinal[$i];
+        else {
+            $str1 = $repeat[1];
+            $limpia1 = explode("(", $str1);
+            //print_r($limpia1);
+            $str2 = $limpia1[1];
+            $limpia2 = explode(")", $str2);
+            //print_r($limpia2);
+
+            //print_r($limpia1[0]); //el nº de veces que repite
+            //print_r($limpia2[1]); //comandos a repetir
+
+            //limpio el array para mantener el orden
+            $arrayStr = [];
+
+            //Se pueden poner comandos antes y despues del repite
+            $repeatInit = explode(" ", $repeat[0]);
+            //print_r($repeatInit);//al hacer el explode, el ultimo 
+            //indice esta vacio y se controla en el for restando 2
+            for ($i = 0; $i <= (count($repeatInit) - 2); $i++) {
+                $arrayStr[] = $repeatInit[$i];
+            }
+            for ($n = 0; $n < $limpia1[0]; $n++) {
+                foreach (explode(" ", $limpia2[0]) as $comando) {
+                    $arrayStr[] = $comando;
+                }
+            }
+            $repeatFinal = explode(" ", $limpia2[1]);
+            //print_r($repeatFinal);//al hacer el explode, el primer 
+            //indice esta vacio y se controla en el inicio > 0
+            for ($i = 1; $i <= (count($repeatFinal) - 1); $i++) {
+                $arrayStr[] = $repeatFinal[$i];
+            }
         }
     }
     //print_r($arrayStr);
-
 
 
     $contador = 0;
@@ -64,6 +84,8 @@ if (isset($_POST["strCom"])) {
     $casa = [];
     $valoresInt = [];
     $default = [];
+
+
     foreach ($arrayStr as $dato) {
         //Cuando convertimos en int una string no numerica el valor es 0
         $saleInt = (int) $dato; //integer
@@ -129,45 +151,20 @@ if (isset($_POST["strCom"])) {
     }
     $_SESSION["arrayBBDD"] = $arrayBBDD;
     //insertar Comandos
-    //tener en cuenta que H es una hora menos hasta el 23 de Marzo con el cambio de hora
-    
-    // Para el login
-    // $formato='d/m/Y-H:i:s';
-    // $_SESSION["fecha"]=date($formato, $timestamp = time());
-    // $_SESSION["sesion"]=$sesion=hash("md5",$fecha,false);
-    
-    // si quieren fecha siempre o solo la del login
-    $formato='d/m/Y-H:i:s';
-    $fecha=date($formato, $timestamp = time());
-
-    // $fecha=$_SESSION["fecha"];
-    $sesion=$_SESSION["sesion"];
-    $usuario=$_SESSION["usuario"];
     $dsn = "mysql:dbname=logoBBDD;host=db"; //dsn con nombre de la bd de datos creada
     $usuarioBD = "alumnado";
     $claveBD = "alumnado";
-    for ($i = 0; $i+1 < count($arrayBBDD); $i = $i + 2) {
+    for ($i = 0; $i + 1 < count($arrayBBDD); $i = $i + 2) {
         try {
             $bd = new PDO($dsn, $usuarioBD, $claveBD);
-            $sql2 = "INSERT INTO comandos (comando, valor, id_user, fecha, sesion) VALUES
-                    ('$arrayBBDD[$i]', '" . $arrayBBDD[$i + 1] . "', '$usuario', '$fecha', '$sesion')
+            $sql2 = "INSERT INTO comandos (comando, valor, id_user) VALUES
+                    ('$arrayBBDD[$i]', '" . $arrayBBDD[$i + 1] . "', '1')
                 ";
             $bd->query($sql2);
         } catch (PDOException $e) {
         }
     }
+    //print_r($arrayBBDD);
     $arrayBBDD = [];
+} else {
 }
-else {
-}
-/*
-Tabla (comandos)
-  id INT;(PRIMARY KEY)
-  comando VARCHAR;
-  valor VARCHAR;
-  fecha DATE;
-  hora TIME;
-  sesion VARCHAR;
-  id_user INT;(FOREIGN KEY)
-}
-*/
