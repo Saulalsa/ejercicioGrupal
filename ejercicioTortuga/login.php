@@ -51,7 +51,7 @@ session_start();
                 $_SESSION["sesion"]=$sesion=hash("md5",$fecha,false);
     
                 echo"<p>Acceso conseguido</p>";
-                echo"<a href='/ejercicioGrupal/ejercicioTortuga/main.php'><button type='submit'>ACCEDER</button></a>";
+                echo"<a href='main.php'><button type='submit'>ACCEDER</button></a>";
             }else{
                 echo("<form action='login.php' method='post'>
                 <p>Error el usuario esta desactivado</p>

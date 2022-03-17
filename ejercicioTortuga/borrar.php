@@ -68,5 +68,5 @@
         }
     }
     echo("<p>Perfil borrado</p>");
-    echo("<a href='/ejercicioGrupal/ejercicioTortuga/crudUsuarios.php'><button>Volver</button></a>");
+    echo("<a href='crudUsuarios.php'><button>Volver</button></a>");
 ?>

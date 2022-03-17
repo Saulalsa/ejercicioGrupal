@@ -51,7 +51,7 @@
         }
     }else{
         echo("<p>Debe registrarse antes de programar</p>");
-        echo("<a href='/ejercicioGrupal/ejercicioTortuga/login.php'><button>Login</button></a>");
+        echo("<a href='login.php'><button>Login</button></a>");
     }
     ?>
 </body>
