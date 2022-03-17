@@ -24,7 +24,7 @@ $claveBD = "alumnado";
 try {
     $bd = new PDO($dsn, $usuarioBD, $claveBD);
     $sql = "CREATE TABLE IF NOT EXISTS usuarios (
-        id_user INT,
+        id_user INT AUTO_INCREMENT,
         perfil VARCHAR(50),
         nombre VARCHAR(255),
         pass VARCHAR(255),
@@ -73,10 +73,12 @@ try {
     $sql2 = "INSERT INTO usuarios (id_user, perfil, nombre, pass, descripcion, activo) VALUES
         (
             1, 'prof', 'Profesor', 'Profesor', 'Profesor de TIC', true
-        ),
-        (
-            2, 'alum', 'Alumno', 'Alumno', 'Alumno de TIC', true
-        )";//habria que pasar variables de sesion
+        )
+        -- ,
+        -- (
+        --     2, 'alum', 'Alumno', 'Alumno', 'Alumno de TIC', true
+        -- )
+        ";//habria que pasar variables de sesion
     $resultadoObtener = $bd->query($sql2);
 } catch (PDOException $e) {
 
