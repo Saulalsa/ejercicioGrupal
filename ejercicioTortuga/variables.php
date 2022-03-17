@@ -16,24 +16,42 @@ if (isset($_POST["strCom"])) {
     //print_r($arrayStr);
     if (count($repeat) > 1) {
         if (count($repeat) > 2) {
-            print_r($repeat);
+            //print_r($repeat);
             $arrayStr = [];
             //varios repeat seguidos arreglar repite(repite)
-            for ($i = 1; $i+1 <= count($repeat); $i++) {
+            for ($i = 1; $i + 1 <= count($repeat); $i++) {
                 $str1 = $repeat[$i];
                 $limpia1 = explode("(", $str1);
-                print_r($limpia1);
-                $str2 = $limpia1[1];
-                $limpia2 = explode(")", $str2);
-                print_r($limpia2);
-                for ($n = 0; $n < $limpia1[0]; $n++) {
-                    foreach (explode(" ", $limpia2[0]) as $comando) {
-                        $arrayStr[] = $comando;
+                //print_r($limpia1);
+                if (isset($limpia1[1])) {
+                    $str2 = $limpia1[0];
+                    $i++;
+                    do {
+                        $str2 = $str2 - 1;
+                        $limpia2 = explode("(", $repeat[$i]);
+                        $limpia3 = explode(")", $limpia2[1]);
+                        $espaciado = explode(" ",$limpia3[0]);
+                        //print_r($limpia2);
+                        for ($n = 1; $n <= (int) $limpia2[0]; $n++) {
+                            foreach ($espaciado as $comando) {
+                                $arrayStr[] = $comando;
+                            }
+                        }
+                        //print_r($arrayStr);
+                    } while ($str2 > 0);
+                }
+                else {
+                    $str2 = $limpia1[1];
+                    $limpia2 = explode(")", $str2);
+                    //print_r($limpia2);
+                    for ($n = 0; $n < $limpia1[0]; $n++) {
+                        foreach (explode(" ", $limpia2[0]) as $comando) {
+                            $arrayStr[] = $comando;
+                        }
                     }
                 }
             }
-        }
-        else {
+        } else {
             $str1 = $repeat[1];
             $limpia1 = explode("(", $str1);
             //print_r($limpia1);
