@@ -11,6 +11,8 @@ if (isset($_POST["strCom"])) {
 
     //    ##### ----- ##### REPEAT ##### ----- #####
 
+    //repite 3 [repite 4 [ad 20 de 30]] prueba 
+
     $repeat = explode("repite", $_POST["strCom"]);
 
     //print_r($arrayStr);
@@ -21,15 +23,15 @@ if (isset($_POST["strCom"])) {
             //varios repeat seguidos arreglar repite(repite)
             for ($i = 1; $i + 1 <= count($repeat); $i++) {
                 $str1 = $repeat[$i];
-                $limpia1 = explode("(", $str1);
+                $limpia1 = explode("[", $str1);
                 //print_r($limpia1);
                 if (isset($limpia1[1])) {
                     $str2 = $limpia1[0];
                     $i++;
                     do {
                         $str2 = $str2 - 1;
-                        $limpia2 = explode("(", $repeat[$i]);
-                        $limpia3 = explode(")", $limpia2[1]);
+                        $limpia2 = explode("[", $repeat[$i]);
+                        $limpia3 = explode("]", $limpia2[1]);
                         $espaciado = explode(" ",$limpia3[0]);
                         //print_r($limpia2);
                         for ($n = 1; $n <= (int) $limpia2[0]; $n++) {
@@ -42,7 +44,7 @@ if (isset($_POST["strCom"])) {
                 }
                 else {
                     $str2 = $limpia1[1];
-                    $limpia2 = explode(")", $str2);
+                    $limpia2 = explode("]", $str2);
                     //print_r($limpia2);
                     for ($n = 0; $n < $limpia1[0]; $n++) {
                         foreach (explode(" ", $limpia2[0]) as $comando) {
@@ -53,10 +55,10 @@ if (isset($_POST["strCom"])) {
             }
         } else {
             $str1 = $repeat[1];
-            $limpia1 = explode("(", $str1);
+            $limpia1 = explode("[", $str1);
             //print_r($limpia1);
             $str2 = $limpia1[1];
-            $limpia2 = explode(")", $str2);
+            $limpia2 = explode("]", $str2);
             //print_r($limpia2);
 
             //print_r($limpia1[0]); //el nº de veces que repite
@@ -175,9 +177,8 @@ if (isset($_POST["strCom"])) {
     for ($i = 0; $i + 1 < count($arrayBBDD); $i = $i + 2) {
         try {
             $bd = new PDO($dsn, $usuarioBD, $claveBD);
-
-            $sql2 = "INSERT INTO comandos (comando, valor, id_user, fecha, sesion) VALUES
-                    ('$arrayBBDD[$i]', '" . $arrayBBDD[$i + 1] . "', '".$usuario[0]["id_user"]."', '$fecha', '$sesion')
+            $sql2 = "INSERT INTO comandos (comando, valor, id_user) VALUES
+                    ('$arrayBBDD[$i]', '" . $arrayBBDD[$i + 1] . "', '1')
                 ";
             $bd->query($sql2);
         } catch (PDOException $e) {
