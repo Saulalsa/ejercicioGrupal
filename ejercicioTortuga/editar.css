@@ -1,0 +1,17 @@
+label{
+    font-size: 1.2em;
+    margin-left: 225px;
+    padding: 10px;
+}
+input{  
+    margin-left: 150px;
+    font-size: 1.2em;
+    text-align: center;
+}
+input[type="submit"] {
+    width: 100px;
+    height: 25px;
+    background: #333;
+    color: white;
+    margin-left: 225px;
+  }

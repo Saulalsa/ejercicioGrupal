@@ -1,0 +1,11 @@
+table{
+    font-size: 1.2em;
+    padding: 10px;
+}
+#crearUser {
+    width: 100px;
+    height: 25px;
+    background: #333;
+    color: white;
+    margin-left: 225px;
+  }
