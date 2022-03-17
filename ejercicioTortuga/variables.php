@@ -88,7 +88,6 @@ if (isset($_POST["strCom"])) {
     //print_r($arrayStr);
 
 
-
     $contador = 0;
     $contadorDefault = 0;
     $ad = [];
@@ -103,6 +102,8 @@ if (isset($_POST["strCom"])) {
     $casa = [];
     $valoresInt = [];
     $default = [];
+
+
     foreach ($arrayStr as $dato) {
         //Cuando convertimos en int una string no numerica el valor es 0
         $saleInt = (int) $dato; //integer
@@ -168,26 +169,13 @@ if (isset($_POST["strCom"])) {
     }
     $_SESSION["arrayBBDD"] = $arrayBBDD;
     //insertar Comandos
-    //tener en cuenta que H es una hora menos hasta el 23 de Marzo con el cambio de hora
-    
-    // Para el login
-    // $formato='d/m/Y-H:i:s';
-    // $_SESSION["fecha"]=date($formato, $timestamp = time());
-    // $_SESSION["sesion"]=$sesion=hash("md5",$fecha,false);
-    
-    // si quieren fecha siempre o solo la del login
-    $formato='d/m/Y-H:i:s';
-    $fecha=date($formato, $timestamp = time());
-
-    // $fecha=$_SESSION["fecha"];
-    $sesion=$_SESSION["sesion"];
-    $usuario=$_SESSION["usuario"];
     $dsn = "mysql:dbname=logoBBDD;host=db"; //dsn con nombre de la bd de datos creada
     $usuarioBD = "alumnado";
     $claveBD = "alumnado";
-    for ($i = 0; $i+1 < count($arrayBBDD); $i = $i + 2) {
+    for ($i = 0; $i + 1 < count($arrayBBDD); $i = $i + 2) {
         try {
             $bd = new PDO($dsn, $usuarioBD, $claveBD);
+
             $sql2 = "INSERT INTO comandos (comando, valor, id_user, fecha, sesion) VALUES
                     ('$arrayBBDD[$i]', '" . $arrayBBDD[$i + 1] . "', '".$usuario[0]["id_user"]."', '$fecha', '$sesion')
                 ";
@@ -195,18 +183,7 @@ if (isset($_POST["strCom"])) {
         } catch (PDOException $e) {
         }
     }
+    //print_r($arrayBBDD);
     $arrayBBDD = [];
+} else {
 }
-else {
-}
-/*
-Tabla (comandos)
-  id INT;(PRIMARY KEY)
-  comando VARCHAR;
-  valor VARCHAR;
-  fecha DATE;
-  hora TIME;
-  sesion VARCHAR;
-  id_user INT;(FOREIGN KEY)
-}
-*/
