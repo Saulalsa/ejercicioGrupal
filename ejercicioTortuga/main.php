@@ -1,4 +1,6 @@
-
+<?php
+    session_start();
+?>
 <!-- Oscar Bueno Rodriguez Grupo 1 -->
 
 <!DOCTYPE html>
@@ -14,8 +16,6 @@
 </head>
 
 <body>
-    <h1>Grupo 1.</h1>
-
     <?php
     include("variables.php");
     include("artista.php");
@@ -35,10 +35,25 @@
     }
     ?>
     <!-- formulario, metodo post -->
-    <form action="main.php" method="post">
-        <input type="text" name="strCom" /><br/>
-        <br/><input type="submit" name="bCom" value="Enviar" />
-    </form>
+    
+    <?php
+    if(isset($_SESSION["usuario"])){
+        if ($_SESSION["usuario"][0]["perfil"]=="prof"||$_SESSION["usuario"][0]["perfil"]=="alum") {
+            echo("<form action='main.php' method='post'>
+                <input type='text' name='strCom' /><br/>
+                <br/><input type='submit' name='bCom' value='Enviar' />
+                </form>");
+        }
+        if($_SESSION["usuario"][0]["perfil"]=="prof"){
+            echo("<form action='crudUsuarios.php' method='post'>
+                <br/><input type='submit' name='btncrud' value='Crud Usuarios' />
+                </form>");
+        }
+    }else{
+        echo("<p>Debe registrarse antes de programar</p>");
+        echo("<a href='login.php'><button>Login</button></a>");
+    }
+    ?>
 </body>
 
 </html>

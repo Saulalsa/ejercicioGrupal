@@ -1,0 +1,23 @@
+form {
+    border: 3px solid #f1f1f1;
+}
+.container{
+    padding: 20%;
+    text-align: center;
+}
+p{
+    font-size: 1.2em;
+}
+/* decoracion de la linea para introducir comandos */
+input{  
+    font-size: 1.2em;
+    text-align: center;
+}
+/* decoracion del boton */
+#btn{
+    margin: 30px;
+    width: 100px;
+    height: 25px;
+    background: #333;
+    color: white;
+} 
