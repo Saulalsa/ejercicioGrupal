@@ -54,6 +54,12 @@
         echo("<a href='login.php'><button>Login</button></a>");
     }
     ?>
+
+<?php
+include("crudComandos.php");
+?>
+
+
 </body>
 
 </html>
