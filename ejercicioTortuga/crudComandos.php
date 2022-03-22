@@ -191,14 +191,14 @@ if ($arrayPerfil[0]['perfil'] == "prof") {
             echo ("<input type='checkbox' disabled/>");
         }
         echo ("</td>");
-        //creacion de formulario para acceder al editar usuario
-        echo ("<form action='editar.php' method='post'>");
+       //no lleva a ningun sitio (falta implementar)
+        echo ("<form action='' method='post'>");
         echo ("<td>");
         echo ("<input type='submit' name='" . $valor['id_user'] . "' value='editar'/>");
         echo ("</td>");
         echo ("</form>");
-        //creacion de formulario para acceder a borrar usuario
-        echo ("<form action='borrar.php' method='post'>");
+       //no lleva a ningun sitio (falta implementar)
+        echo ("<form action='' method='post'>");
         echo ("<td>");
         echo ("<input type='submit' name='" . $valor['id_user'] . "' value='borrar'/>");
         echo ("</td>");
@@ -341,13 +341,13 @@ if ($arrayPerfil[0]['perfil'] == "prof") {
             echo ("<input type='checkbox' disabled/>");
         }
         echo ("</td>");
-        //creacion de formulario para acceder al editar usuario
+         //no lleva a ningun sitio (falta implementar)
         echo ("<form action='' method='post'>");
         echo ("<td>");
         echo ("<input type='submit' name='" . $valor['id_user'] . "' value='editar'/>");
         echo ("</td>");
         echo ("</form>");
-        //creacion de formulario para acceder a borrar usuario
+         //no lleva a ningun sitio (falta implementar)
         echo ("<form action='' method='post'>");
         echo ("<td>");
         echo ("<input type='submit' name='" . $valor['id_user'] . "' value='borrar'/>");
